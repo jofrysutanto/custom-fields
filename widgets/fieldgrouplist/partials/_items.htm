@@ -1,0 +1,30 @@
+<?php if ($items): ?>
+    <ul>
+        <?php foreach ($items as $item): ?>
+            <?php
+                $fileName = $item->getBaseFileName();
+                $dataId = 'menu-'.$this->theme->getDirName().'-'.$fileName;
+                $cbId = 'cb'.md5($item->getBaseFileName());
+                $isActive = $this->controller->getActiveFieldGroup() === $dataId;
+            ?>
+            <li class="item <?= $isActive ? 'active' : '' ?>" data-item-path="<?= e($fileName) ?>" data-item-theme="<?= e($this->theme->getDirName()) ?>" data-id="<?= e($dataId) ?>">
+                <a href="<?= Backend::url('jofrysutanto/customfields/index/update/' . $dataId) ?>">
+                    <span class="title"><?= e($item->name) ?></span>
+                    <span class="description">
+                        <?= e($item->getCode()) ?>
+                    </span>
+                    <span class="borders"></span>
+                </a>
+
+                <input type="hidden" name="template[<?= e($item->getBaseFileName()) ?>]" value="0" />
+                
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php else: ?>
+    <p class="no-data"><?= e(trans($this->noRecordsMessage)) ?></p>
+<?php endif ?>
+
+<?php if (!isset($nested)): ?>
+    <input type="hidden" name="theme" value="<?= e($this->theme->getDirName()) ?>">
+<?php endif ?>

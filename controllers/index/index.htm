@@ -1,0 +1,15 @@
+<?php Block::put('sidepanel') ?>
+<div class="layout control-scrollpanel" id="cf-side-panel">
+    <div class="layout-cell">
+        <div class="layout-relative fix-button-container">
+            <form class="layout" data-content-id="fieldgroup" data-object-type="fieldgroup" data-type-icon="oc-icon-files-o" onsubmit="return false">
+                <?= $this->widget->groupList->render() ?>
+            </form>
+        </div>
+    </div>
+</div>
+<?php Block::endPut() ?>
+
+<?php Block::put('body') ?>
+    <?= $title ?>
+<?php Block::endPut() ?>
